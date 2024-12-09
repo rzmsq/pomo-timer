@@ -97,5 +97,8 @@ main {
 }
 
 .pomodoro__progress__el--active {
-    background: gray;
+    background: #BA498D;
+}
+.pomodoro__progress__el--inactive {
+    background: #f2f2f2;
 }
