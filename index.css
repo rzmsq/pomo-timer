@@ -1,0 +1,101 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #ba4949;
+}
+
+main {
+    font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+    main {
+        font-size: 1.4rem;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15em;
+    height: 15em;
+    color: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    border-radius: 50%;
+}
+
+.container h1 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.pomodoro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    margin: 0;
+}
+
+.pomodoro__mode {
+    font-size: 0.2em;
+    margin: 0;
+    padding: 0;
+}
+
+.pomodoro__time {
+    cursor: pointer;
+}
+
+.pomodoro__progress {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2em;
+    margin: 0;
+    padding: 0;
+}
+
+.pomodoro__progress__el {
+    width: 0.15em;
+    height: 0.15em;
+    background: #f2f2f2;
+    border-radius: 50%;
+    margin: 0;
+}
+
+.pomodoro__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 0.3em;
+}
+
+.pomodoro__actions button {
+    background: #ba4949;
+    color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    font-size: 0.3em;
+}
+
+.pomodoro__actions button:hover {
+    background: #f2f2f2;
+    color: #ba4949;
+    border-radius: 5px;
+}
+
+.pomodoro__progress__el--active {
+    background: gray;
+}
