@@ -9,11 +9,24 @@ const defaultRestTime = 2;
 
 
 let focusTime = defaultFocusTime;
-let restTime = defaultFocusTime;
+let restTime = defaultRestTime;
 let progressCount = 0;
 let isFocusTime = true;
 
 let timer = null;
+let currentTime = null;
+
+const setCurrentTime = () => {
+    const time = JSON.parse(localStorage.getItem('currentTime'));
+
+    if (time) {
+        currentTime = time;
+    }
+    else {
+        currentTime = isFocusTime ? focusTime : restTime;
+    }
+
+}
 
 const longRest = () =>{
     progressCount = 0;
@@ -40,11 +53,10 @@ const getTimeStr = (time) => {
 }
 
 const startCount = () => {
-    let time = isFocusTime ? focusTime : restTime;
     timer = setInterval(() => {
-        time--;
-        timeEl.textContent = getTimeStr(time);
-        if (time === 0) {
+        currentTime--;
+        timeEl.textContent = getTimeStr(currentTime);
+        if (currentTime === 0) {
             clearInterval(timer);
 
             if (isFocusTime){
@@ -62,18 +74,23 @@ const startCount = () => {
                 timeEl.textContent = getTimeStr(focusTime);
                 focusModeEl.textContent = 'Focus time';
             }
+
             isFocusTime = !isFocusTime;
+            currentTime = isFocusTime ? focusTime : restTime;
         }
     }, 1000)
-};
+}
 
 const stopCount = () => {
     clearInterval(timer);
-};
+    localStorage.setItem('currentTime', currentTime);
+}
 
 
 startBtn.addEventListener('click', () => {
+    setCurrentTime();
     startCount();
+    localStorage.clear();
 })
 
 stopBtn.addEventListener('click', () =>{
@@ -82,5 +99,6 @@ stopBtn.addEventListener('click', () =>{
 
 window.addEventListener('load', () => {
     focusModeEl.textContent = isFocusTime ? 'Focus time' : 'Rest time';
-    timeEl.textContent = getTimeStr(focusTime);
+    setCurrentTime();
+    timeEl.textContent = getTimeStr(currentTime);
 })
